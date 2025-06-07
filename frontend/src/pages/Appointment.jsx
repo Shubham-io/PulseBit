@@ -4,7 +4,6 @@ import { APPContext } from "../context/AppContext";
 import { assets } from "../assets/assets";
 import RelatedDoctors from "../components/RelatedDoctors";
 import { toast } from "react-toastify";
-import { IoMdReturnLeft } from "react-icons/io";
 import axios from "axios";
  
 
