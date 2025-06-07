@@ -110,25 +110,29 @@ const Navbar = () => {
           </div>
           <ul className="flex flex-col items-center gap-2 mt-5 px-5 text-lg font-medium">
             <NavLink onClick={() => setshowMenu(false)} to="/">
-              <p className="px-4 py-2 rounded inline-block">HOME</p>
+              <p className="px-6 py-2 rounded-full inline-block">HOME</p>
             </NavLink>
             <NavLink onClick={() => setshowMenu(false)} to="/doctors">
-              <p className="px-4 py-2 rounded inline-block">All DOCTORS</p>
+              <p className="px-6 py-2 rounded-full inline-block">All DOCTORS</p>
             </NavLink>
             <NavLink onClick={() => setshowMenu(false)} to="/about">
-              <p className="px-4 py-2 rounded inline-block">ABOUT</p>
+              <p className="px-6 py-2 rounded-full inline-block">ABOUT</p>
             </NavLink>
             <NavLink onClick={() => setshowMenu(false)} to="/contact">
-              <p className="px-4 py-2 rounded inline-block">CONTACT</p>
+              <p className="px-6 py-2 rounded-full inline-block">CONTACT</p>
             </NavLink>
-
-            <button
-              onClick={() => navigate("/login")}
-              className="bg-primary text-white px-8 py-3 rounded-full font-light "
-            >
-              Create account
-            </button>
           </ul>
+          <div className="flex items-center justify-center mt-2">
+            <button
+              onClick={() => {
+                setshowMenu(false);
+                navigate("/login");
+              }}
+              className="bg-primary text-lg font-medium mx-auto text-white px-8 py-3 rounded-md"
+            >
+              Create Account
+            </button>
+          </div>
         </div>
       </div>
     </div>
