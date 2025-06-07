@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 
 import { AppContext } from "../../context/AppContext";
 import { assets } from "../../assets/assets.js";
-import { AdminContext } from "../../context/adminContext.jsx";
+import { AdminContext } from "../../context/AdminContext.jsx";
 
 const AllApointments = () => {
   const { aToken, appointments, getAllAppointments, cancelAppointment } =
