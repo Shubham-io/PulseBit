@@ -1,5 +1,4 @@
 import { createContext, useState } from "react";
-import { VscLightbulb } from "react-icons/vsc";
 
 export const AppContext = createContext();
 
