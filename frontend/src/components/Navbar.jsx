@@ -25,9 +25,14 @@ const Navbar = () => {
       />
 
       <div className="flex justify-center items-center gap-20">
-        <NavLink to="https://pulsebit-admin.vercel.app/" className="border px-2.5 text-xs py-0.5 rounded-full border-gray-500 text-gray-600">
+        <a
+          href="https://pulsebit-admin.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="border px-2.5 text-xs py-0.5 rounded-full border-gray-500 text-gray-600"
+        >
           Admin Dashboard
-        </NavLink>
+        </a>
 
         <ul className="hidden md:flex items-start gap-5 font-medium">
           <NavLink to="/">
