@@ -121,6 +121,13 @@ const Navbar = () => {
             <NavLink onClick={() => setshowMenu(false)} to="/contact">
               <p className="px-4 py-2 rounded inline-block">CONTACT</p>
             </NavLink>
+
+            <button
+              onClick={() => navigate("/login")}
+              className="bg-primary text-white px-8 py-3 rounded-full font-light "
+            >
+              Create account
+            </button>
           </ul>
         </div>
       </div>
