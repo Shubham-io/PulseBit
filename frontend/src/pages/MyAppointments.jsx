@@ -150,10 +150,11 @@ const MyAppointments = () => {
 
               {!item.cancelled && !item.payment && !item.isCompleted && (
                 <button
-                  onClick={() => appointmentRazorpay(item._id)}
-                  className="text-sm text-stone-500 text-center sm:min-w-48 py-2 border rounded hover:bg-primary hover:text-white transition-all duration-300"
+                  // onClick={() => appointmentRazorpay(item._id)}
+                   disabled
+                   className="text-sm text-stone-400 text-center sm:min-w-48 py-2 border rounded cursor-not-allowed bg-gray-200 transition-all duration-300"
                 >
-                  Pay Online
+                  Pay Online (Coming Soon)
                 </button>
               )}
 
