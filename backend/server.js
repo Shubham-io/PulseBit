@@ -14,7 +14,7 @@ const URI = process.env.MONGO_URI;
 connectCloudinary();
 
 try {
-  mongoose.connect(`${URI}/prescripto`);
+  mongoose.connect(`${URI}/pulsebit`);
   console.log("connection successful");
 } catch (error) {
   console.log("Error: ", error);
