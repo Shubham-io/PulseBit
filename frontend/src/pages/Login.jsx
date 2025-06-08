@@ -9,13 +9,13 @@ const Login = () => {
   const navigate = useNavigate();
  
 
-  const [state, setState] = useState("Sing Up");
+  const [state, setState] = useState("Sign Up");
   console.log(state);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  console.log("Payload:", { name, email, password });
+  // console.log("Payload:", { name, email, password });
 
 
   const onSubmitHandler = async (e) => {
@@ -66,14 +66,14 @@ const Login = () => {
     <form onSubmit={onSubmitHandler} className="min-h-[80vh] flex items-center">
       <div className="flex flex-col gap-3 m-auto items-start p-8 min-w-[340px] sm:min-w-96 border rounded-xl text-zinc-600 text-sm shadow-lg">
         <p className="text-2xl font-semibold">
-          {state === "Sing Up" ? "Create Account" : "Login"}
+          {state === "Sign Up" ? "Create Account" : "Login"}
         </p>
         <p>
-          Please {state === "Sing Up" ? "Sign Up" : "Login"} to book appointment
+          Please {state === "Sign Up" ? "Sign Up" : "Login"} to book appointment
         </p>
 
         {/* dynamically rendering the name input field  */}
-        {state === "Sing Up" && (
+        {state === "Sign Up" && (
           <div className="w-full">
             <p>Full Name</p>
             <input
@@ -112,9 +112,9 @@ const Login = () => {
           type="submit"
           className="bg-primary text-white w-full py-2 rounded-md text-base "
         >
-          {state === "Sing Up" ? "Create Account" : "Login"}
+          {state === "Sign Up" ? "Create Account" : "Login"}
         </button>
-        {state === "Sing Up" ? (
+        {state === "Sign Up" ? (
           <p>
             Already have an account?{" "}
             <span
@@ -128,7 +128,7 @@ const Login = () => {
           <p>
             Create a new accoutn?{" "}
             <span
-              onClick={() => setState("Sing Up")}
+              onClick={() => setState("Sign Up")}
               className="text-primary underline cursor-pointer"
             >
               Click here
