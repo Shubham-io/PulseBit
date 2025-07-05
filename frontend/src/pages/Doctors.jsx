@@ -103,7 +103,7 @@ const Doctors = () => {
             onClick={() =>
               speciality === "Gastroenterologist"
                 ? navigate("/doctors")
-                : navigate("/doctors")
+                : navigate("/doctors/Gastroenterologist")
             }
             className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${
               speciality === "Gastroenterologist"
