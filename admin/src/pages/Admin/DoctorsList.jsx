@@ -1,8 +1,9 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { AdminContext } from "../../context/AdminContext";
+import Loader from "../../components/Loader";
 
 const DoctorsList = () => {
-  const { doctors, aToken, getAllDoctors, changeAvailability } =
+  const { doctors, aToken, getAllDoctors, changeAvailability, isLoading } =
     useContext(AdminContext);
 
   useEffect(() => {
@@ -12,8 +13,9 @@ const DoctorsList = () => {
   }, [aToken]);
 
   return (
-    <div className="m-5 max-h-[90vh] overflow-y-scroll">
+    <div className="relative m-5 max-h-[90vh] overflow-y-scroll">
       <h1 className="text-lg font-medium">All Doctors</h1>
+        {isLoading ? <Loader /> : null}
       <div className="w-full flex flex-wrap gap-4 pt-5 gap-y-6">
         {doctors.map((item, index) => (
           <div

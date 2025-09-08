@@ -11,11 +11,13 @@ const AdminContextProvider = ({ children }) => {
   const [doctors, setDoctors] = useState([]);
   const [appointments, setAppointments] = useState([]);
   const [dashData, setDashData] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   const getAllDoctors = async () => {
     try {
+      setIsLoading(true);
       const { data } = await axios.post(
         backendUrl + "/api/admin/all-doctors",
         {},
@@ -29,11 +31,14 @@ const AdminContextProvider = ({ children }) => {
       }
     } catch (error) {
       toast.error(error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
-
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   const changeAvailability = async (docId) => {
     try {
+      // delay(2000);
       const { data } = await axios.post(
         backendUrl + "/api/admin/change-availability",
         { docId },
@@ -102,8 +107,6 @@ const AdminContextProvider = ({ children }) => {
     }
   };
 
-;
-
   const value = {
     aToken,
     setAToken,
@@ -117,6 +120,7 @@ const AdminContextProvider = ({ children }) => {
     cancelAppointment,
     dashData,
     getDashData,
+    isLoading,
   };
 
   return (
