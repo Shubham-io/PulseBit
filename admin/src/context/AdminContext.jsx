@@ -17,7 +17,6 @@ const AdminContextProvider = ({ children }) => {
 
   const getAllDoctors = async () => {
     try {
-      setIsLoading(true);
       const { data } = await axios.post(
         backendUrl + "/api/admin/all-doctors",
         {},
@@ -31,14 +30,12 @@ const AdminContextProvider = ({ children }) => {
       }
     } catch (error) {
       toast.error(error.message);
-    } finally {
-      setIsLoading(false);
     }
   };
-  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
   const changeAvailability = async (docId) => {
     try {
-      // delay(2000);
+      setIsLoading(true);
       const { data } = await axios.post(
         backendUrl + "/api/admin/change-availability",
         { docId },
@@ -52,6 +49,8 @@ const AdminContextProvider = ({ children }) => {
       }
     } catch (error) {
       toast.error(error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -73,6 +72,7 @@ const AdminContextProvider = ({ children }) => {
 
   const cancelAppointment = async (appointmentId) => {
     try {
+      setIsLoading(true);
       const { data } = await axios.post(
         backendUrl + "/api/admin/cancel-appointment",
         { appointmentId },
@@ -87,6 +87,8 @@ const AdminContextProvider = ({ children }) => {
       }
     } catch (error) {
       toast.error(error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -121,6 +123,7 @@ const AdminContextProvider = ({ children }) => {
     dashData,
     getDashData,
     isLoading,
+    setIsLoading,
   };
 
   return (

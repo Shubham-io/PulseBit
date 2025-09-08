@@ -3,13 +3,14 @@ import { assets } from "../../assets/assets";
 import { AdminContext } from "../../context/AdminContext";
 import { toast } from "react-toastify";
 import axios from "axios";
+import Loader from "../../components/Loader";
 
 const AddDoctor = () => {
   const [docImg, setDocImg] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [experience, setExperience] = useState("1 Year");
+  const [experience, setExperience] = useState("");
   const [fees, setFees] = useState("");
   const [about, setAbout] = useState("");
   const [speciality, setSpeciality] = useState("General physician");
@@ -17,16 +18,20 @@ const AddDoctor = () => {
   const [address1, setAddress1] = useState("");
   const [address2, setAddress2] = useState("");
 
-  const { backendUrl, aToken } = useContext(AdminContext);
+  const { backendUrl, aToken, isLoading, setIsLoading } =
+    useContext(AdminContext);
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    
+
     try {
       if (!docImg) {
         return toast.error("Image not selected");
       }
-      
+      if (!experience.trim()) {
+        return toast.error("Select your experience");
+      }
+
       // formData Constructor
       const formData = new FormData();
       // image is field name in backend
@@ -44,38 +49,44 @@ const AddDoctor = () => {
         JSON.stringify({ line1: address1, line2: address2 })
       );
 
-       
       // console log form data
       formData.forEach((value, key) => {
         console.log(`${key} : ${value}`);
       });
 
+      setIsLoading(true);
       // making api call (aToken will be converted into lowercase used in backend - 'atoken')
-      const {data} = await axios.post(backendUrl + "/api/admin/add-doctor", formData, {headers: {aToken}})
+      const { data } = await axios.post(
+        backendUrl + "/api/admin/add-doctor",
+        formData,
+        { headers: { aToken } }
+      );
       if (data.success) {
-        toast.success(data.message)
-        setDocImg(false)
-        setName('')
-        setPassword('')
-        setEmail('')
-        setAddress1('')
-        setAddress2('')
-        setDegree('')
-        setAbout('')
-        setFees('')
-      }else{
-        toast.error(data.message)
+        toast.success(data.message);
+        setDocImg(false);
+        setName("");
+        setPassword("");
+        setEmail("");
+        setAddress1("");
+        setAddress2("");
+        setDegree("");
+        setAbout("");
+        setFees("");
+      } else {
+        toast.error(data.message);
       }
-     
     } catch (error) {
-      toast.error(error.message)
-      console.log(error)
+      toast.error(error.message);
+      console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <form onSubmit={onSubmitHandler} className="m-5 w-full">
       <p className="mb-3 text-lg font-medium">Add Doctor</p>
+      {isLoading ? <Loader /> : null}
       <div className="bg-white p-8 border rounded w-full max-w-4xl max-h-[80vh] overflow-y-scroll">
         {/* imgage upload area  */}
         <div className="flex items-center gap-4 mb-8 text-gray-500">
@@ -142,8 +153,8 @@ const AddDoctor = () => {
                 onChange={(e) => setExperience(e.target.value)}
                 value={experience}
                 className="border rounded px-3 py-2"
-                
               >
+                <option value="">Select experience</option>
                 <option value="1 Year">1 Year</option>
                 <option value="2 Year">2 Year</option>
                 <option value="3 Year">3 Year</option>
@@ -178,7 +189,6 @@ const AddDoctor = () => {
                 onChange={(e) => setSpeciality(e.target.value)}
                 value={speciality}
                 className="border rounded px-3 py-2"
-                
               >
                 <option value="General physician">General physician</option>
                 <option value="Gynecologist">Gynecologist</option>

@@ -3,10 +3,16 @@ import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/AppContext";
 import { assets } from "../../assets/assets.js";
 import { AdminContext } from "../../context/AdminContext.jsx";
+import Loader from "../../components/Loader.jsx";
 
 const AllApointments = () => {
-  const { aToken, appointments, getAllAppointments, cancelAppointment } =
-    useContext(AdminContext);
+  const {
+    aToken,
+    appointments,
+    getAllAppointments,
+    cancelAppointment,
+    isLoading,
+  } = useContext(AdminContext);
   const { calculateAge, slotDateFormat, currency } = useContext(AppContext);
 
   useEffect(() => {
@@ -17,6 +23,7 @@ const AllApointments = () => {
 
   return (
     <div className="w-full max-w-6xl m-5">
+      {isLoading ? <Loader /> : null}
       <p className="mb-3 text-lg font-medium">All Appointments</p>
 
       <div className="bg-white border rounded text-sm max-h-[80vh] min-h-[60vh] overflow-y-scroll">
